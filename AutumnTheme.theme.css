@@ -1,0 +1,583 @@
+/**
+ * @name Autumn Theme
+ * @version 1.0.0
+ * @description A beautiful autumn-themed Discord theme with warm colors and scenic landscape background, original by CapnKitten.
+ * @author Kaedee206
+ *
+ * @website https://betterdiscord.app
+*/
+
+@import url(https://raw.github.com/kaedee206/Better-Discord/main/AutumnTheme.theme.css);
+
+:root {
+	/* APP ELEMENTS */
+	--app-bg: url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80);
+	--app-blur: 4px; /* Reduced for better performance */
+	--app-margin: 24px;
+	--app-radius: 8px;
+	--transition-speed: 0.15s; /* Faster transitions */
+	--transition-easing: cubic-bezier(0.4, 0, 0.2, 1); /* Smooth easing */
+
+	/* ACCENT HSL AND TEXT COLOR SETTINGS - Autumn Warm Tones */
+	--accent-hue: 30; /* Orange/Brown tones for autumn */
+	--accent-saturation: 77.5%;
+	--accent-lightness: 47.1%;
+	--accent-opacity: 1;
+	--accent-text-color: hsl(0,0%,100%);
+
+	/* SIDEBARS AND CHAT AREA COLOR SETTINGS */
+	--sidebar-color: hsl(25, 55%, 25%, 0.7); /* Warm brown with transparency */
+	--main-content-color: hsl(25, 45%, 20%, 0.5); /* Darker warm brown */
+
+	/* MESSAGE SETTINGS */
+	--message-color: hsl(30, 40%, 25%, 0.6); /* Autumn brown */
+	--message-radius: 8px;
+	--message-padding-top: 8px;
+	--message-padding-side: 8px;
+
+	/* REPLY HSL COLOR SETTINGS - Autumn Gold */
+	--reply-hue: 35; /* Golden yellow */
+	--reply-saturation: 85%;
+	--reply-lightness: 55%;
+	--reply-opacity: 1;
+
+	/* TEXTAREA SETTINGS */
+	--textarea-color: 139, 69, 19; /* SaddleBrown RGB */
+	--textarea-alpha: 0.6;
+	--textarea-alpha-focus: 0.75;
+	--textarea-text-color: hsl(45, 60%, 95%); /* Light warm text */
+	--textarea-radius: 22px;
+
+	/* CARD SETTINGS */
+	--card-color: hsl(25, 50%, 30%, 0.6);
+	--card-color-hover: hsl(30, 55%, 35%, 0.7);
+	--card-color-select: hsl(25, 60%, 40%, 0.8);
+
+	/* BUTTON SETTINGS */
+	--button-height: 32px;
+	--button-padding: 0 16px;
+	--button-action-color: hsl(30, 77%, 47%); /* Autumn orange */
+	--button-radius: 16px;
+}
+
+.visual-refresh.theme-dark {
+	/* TEXT COLOR SETTINGS */
+	--text-primary: hsl(45, 60%, 95%); /* Light warm white */
+	--text-secondary: hsl(35, 45%, 80%); /* Warm light gray */
+
+	/* CHANNEL COLOR SETTINGS */
+	--channels-default: hsl(35, 40%, 70%); /* Warm muted text */
+	--channel-icon: hsl(30, 50%, 65%);
+
+	/* ICON COLOR SETTINGS */
+	--icon-primary: hsl(45, 60%, 95%);
+	--icon-secondary: hsl(35, 45%, 85%);
+	--icon-tertiary: hsl(30, 40%, 75%);
+
+	/* INTERACTIVE COLOR SETTINGS */
+	--interactive-normal: hsl(35, 45%, 80%);
+	--interactive-hover: hsl(45, 60%, 95%);
+	--interactive-active: hsl(30, 77%, 60%);
+	--interactive-muted: hsl(25, 30%, 50%);
+
+	/* BACKGROUND MODIFIER SETTINGS */
+	--background-modifier-hover: hsl(30, 50%, 40%, 0.15);
+	--background-modifier-selected: hsl(30, 55%, 45%, 0.25);
+}
+
+/* Apply background image */
+.appMount-3lHmkl,
+body {
+	background-image: var(--app-bg) !important;
+	background-size: cover !important;
+	background-position: center center !important;
+	background-attachment: fixed !important;
+	background-repeat: no-repeat !important;
+	will-change: auto; /* Optimize background rendering */
+	contain: layout style paint; /* Performance optimization */
+}
+
+/* Main app blur effect */
+.appMount-3lHmkl::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: hsl(25, 45%, 15%, 0.3);
+	backdrop-filter: blur(var(--app-blur));
+	-webkit-backdrop-filter: blur(var(--app-blur)); /* Safari support */
+	z-index: -1;
+	will-change: transform; /* Hardware acceleration */
+	transform: translateZ(0); /* Force GPU acceleration */
+}
+
+/* Sidebar styling */
+.sidebar-2K8pFh,
+.base-2jD3DU {
+	background: var(--sidebar-color) !important;
+	backdrop-filter: blur(var(--app-blur));
+	-webkit-backdrop-filter: blur(var(--app-blur));
+	will-change: transform;
+	transform: translateZ(0); /* Hardware acceleration */
+	contain: layout style paint;
+}
+
+/* Main content area */
+.chat-2ZfjoI,
+.content-1jQy2l {
+	background: var(--main-content-color) !important;
+	backdrop-filter: blur(calc(var(--app-blur) * 0.5));
+	-webkit-backdrop-filter: blur(calc(var(--app-blur) * 0.5));
+	will-change: contents; /* Optimize for content changes */
+	contain: layout style paint;
+}
+
+/* Channel list */
+.container-2PjhQ- {
+	background: transparent !important;
+}
+
+/* Channel items */
+.wrapper-2jXpOf {
+	will-change: background-color, transform;
+	transform: translateZ(0); /* Hardware acceleration */
+	contain: layout style;
+}
+
+.wrapper-2jXpOf:hover {
+	background: var(--background-modifier-hover) !important;
+	border-radius: var(--app-radius);
+	transform: translateX(2px) translateZ(0); /* Smooth slide effect */
+}
+
+.wrapper-2jXpOf[class*="selected"],
+.wrapper-2jXpOf.selected-1-Z6a- {
+	background: var(--background-modifier-selected) !important;
+	border-radius: var(--app-radius);
+	transform: translateX(0) translateZ(0);
+}
+
+/* Messages */
+.message-2qnXI6 {
+	background: var(--message-color) !important;
+	border-radius: var(--message-radius);
+	padding-top: var(--message-padding-top);
+	padding-left: var(--message-padding-side);
+	padding-right: var(--message-padding-side);
+	margin: 4px 0;
+	backdrop-filter: blur(2px); /* Reduced blur for performance */
+	-webkit-backdrop-filter: blur(2px);
+	will-change: transform, opacity;
+	transform: translateZ(0);
+	contain: layout style;
+}
+
+.message-2qnXI6:hover {
+	background: var(--card-color-hover) !important;
+	transform: translateY(-1px) translateZ(0); /* Subtle lift effect */
+}
+
+/* Message content */
+.messageContent-2t3eCI {
+	color: var(--text-primary) !important;
+}
+
+.username-1A8OIy {
+	color: hsl(var(--reply-hue), var(--reply-saturation), var(--reply-lightness)) !important;
+}
+
+.timestamp-3ZCmNB {
+	color: var(--text-secondary) !important;
+}
+
+/* Input/Textarea */
+.channelTextArea-1VQBuV,
+.slateTextArea-1Mkdgw {
+	background: rgba(var(--textarea-color), var(--textarea-alpha)) !important;
+	backdrop-filter: blur(calc(var(--app-blur) * 0.75));
+	-webkit-backdrop-filter: blur(calc(var(--app-blur) * 0.75));
+	border-radius: var(--textarea-radius);
+	border: none !important;
+	box-shadow: none !important;
+	will-change: background-color, transform;
+	transform: translateZ(0);
+	contain: layout style;
+}
+
+.channelTextArea-1VQBuV:focus-within,
+.slateTextArea-1Mkdgw:focus-within {
+	background: rgba(var(--textarea-color), var(--textarea-alpha-focus)) !important;
+	transform: scale(1.01) translateZ(0); /* Subtle scale on focus */
+}
+
+.channelTextArea-1VQBuV textarea,
+.slateTextArea-1Mkdgw textarea {
+	color: var(--textarea-text-color) !important;
+	background: transparent !important;
+}
+
+/* Buttons */
+.button-1RcPpB[class*="primary"],
+.lookFilled-1Gx00P.colorBrand-3pXr91 {
+	background: var(--button-action-color) !important;
+	color: var(--accent-text-color) !important;
+	height: var(--button-height);
+	padding: var(--button-padding);
+	border-radius: var(--button-radius);
+	will-change: transform, background-color;
+	transform: translateZ(0);
+	contain: layout style paint;
+}
+
+.button-1RcPpB[class*="primary"]:hover,
+.lookFilled-1Gx00P.colorBrand-3pXr91:hover {
+	background: hsl(var(--accent-hue), var(--accent-saturation), calc(var(--accent-lightness) + 5%)) !important;
+	transform: translateY(-1px) scale(1.02) translateZ(0); /* Lift and scale on hover */
+}
+
+.button-1RcPpB[class*="primary"]:active,
+.lookFilled-1Gx00P.colorBrand-3pXr91:active {
+	transform: translateY(0) scale(0.98) translateZ(0); /* Press effect */
+}
+
+/* Cards */
+.card-3Qj_Ye,
+.cardPrimary-3qK3V8 {
+	background: var(--card-color) !important;
+	border-radius: var(--app-radius);
+	backdrop-filter: blur(calc(var(--app-blur) * 0.75));
+	-webkit-backdrop-filter: blur(calc(var(--app-blur) * 0.75));
+	will-change: transform, opacity;
+	transform: translateZ(0);
+	contain: layout style;
+}
+
+.card-3Qj_Ye:hover,
+.cardPrimary-3qK3V8:hover {
+	background: var(--card-color-hover) !important;
+	transform: translateY(-2px) translateZ(0); /* Lift effect */
+}
+
+.card-3Qj_Ye[class*="selected"],
+.cardPrimary-3qK3V8[class*="selected"] {
+	background: var(--card-color-select) !important;
+	transform: translateZ(0);
+}
+
+/* Scrollbar */
+.scrollbar-2rkZSL::-webkit-scrollbar-thumb,
+.thin-31rLD7::-webkit-scrollbar-thumb,
+.scrollbarGhost-2B3h43::-webkit-scrollbar-thumb {
+	background: hsl(var(--accent-hue), var(--accent-saturation), var(--accent-lightness)) !important;
+	border-radius: 10px;
+	opacity: 0.6;
+	will-change: opacity;
+	transform: translateZ(0);
+}
+
+.scrollbar-2rkZSL::-webkit-scrollbar-thumb:hover,
+.thin-31rLD7::-webkit-scrollbar-thumb:hover,
+.scrollbarGhost-2B3h43::-webkit-scrollbar-thumb:hover {
+	opacity: 0.9;
+}
+
+.scrollbar-2rkZSL::-webkit-scrollbar-track,
+.thin-31rLD7::-webkit-scrollbar-track,
+.scrollbarGhost-2B3h43::-webkit-scrollbar-track {
+	background: hsl(var(--accent-hue), 30%, 20%, 0.3) !important;
+	border-radius: 10px;
+}
+
+/* Server list */
+.wrapper-1Rf91z {
+	background: var(--sidebar-color) !important;
+	backdrop-filter: blur(var(--app-blur));
+	-webkit-backdrop-filter: blur(var(--app-blur));
+	will-change: transform;
+	transform: translateZ(0);
+	contain: layout style paint;
+}
+
+/* User panel */
+.panel-2ZFCRb {
+	background: var(--sidebar-color) !important;
+	backdrop-filter: blur(var(--app-blur));
+	-webkit-backdrop-filter: blur(var(--app-blur));
+	will-change: transform;
+	transform: translateZ(0);
+	contain: layout style paint;
+}
+
+/* Member list */
+.members-1998pB {
+	background: transparent !important;
+}
+
+.member-3-Y1UQ {
+	color: var(--text-primary) !important;
+	will-change: transform, background-color;
+	transform: translateZ(0);
+	contain: layout style;
+}
+
+.member-3-Y1UQ:hover {
+	background: var(--background-modifier-hover) !important;
+	border-radius: var(--app-radius);
+	transform: translateX(2px) translateZ(0); /* Smooth slide */
+}
+
+/* Embeds */
+.embed-2VtM6e {
+	background: hsl(var(--accent-hue), 40%, 25%, 0.5) !important;
+	border-left: 4px solid hsl(var(--accent-hue), var(--accent-saturation), var(--accent-lightness)) !important;
+	border-radius: var(--app-radius);
+	backdrop-filter: blur(4px);
+}
+
+/* Links */
+.markup-2BOw-j a {
+	color: hsl(var(--reply-hue), var(--reply-saturation), var(--reply-lightness)) !important;
+}
+
+.markup-2BOw-j a:hover {
+	color: hsl(var(--accent-hue), var(--accent-saturation), var(--accent-lightness)) !important;
+}
+
+/* Reactions */
+.reaction-2A2y9y {
+	background: hsl(var(--accent-hue), 50%, 35%, 0.5) !important;
+	border: 1px solid hsl(var(--accent-hue), var(--accent-saturation), var(--accent-lightness)) !important;
+	border-radius: var(--app-radius);
+	will-change: transform, scale;
+	transform: translateZ(0);
+	contain: layout style;
+}
+
+.reaction-2A2y9y:hover {
+	background: hsl(var(--accent-hue), var(--accent-saturation), calc(var(--accent-lightness) - 10%), 0.6) !important;
+	transform: scale(1.1) translateZ(0); /* Scale on hover */
+}
+
+.reaction-2A2y9y:active {
+	transform: scale(0.95) translateZ(0); /* Press effect */
+}
+
+/* Modals */
+.modal-3c3bKg {
+	background: hsl(var(--accent-hue), 50%, 25%, 0.95) !important;
+	backdrop-filter: blur(calc(var(--app-blur) * 1.5));
+	border: 1px solid hsl(var(--accent-hue), var(--accent-saturation), var(--accent-lightness)) !important;
+	border-radius: var(--app-radius);
+}
+
+/* Dropdowns */
+.menu-3sdvDG {
+	background: hsl(var(--accent-hue), 50%, 25%, 0.95) !important;
+	backdrop-filter: blur(var(--app-blur));
+	border: 1px solid hsl(var(--accent-hue), var(--accent-saturation), var(--accent-lightness)) !important;
+	border-radius: var(--app-radius);
+}
+
+.menuItem-1P4QYV {
+	will-change: transform, background-color;
+	transform: translateZ(0);
+	contain: layout style;
+}
+
+.menuItem-1P4QYV:hover {
+	background: var(--background-modifier-hover) !important;
+	transform: translateX(4px) translateZ(0); /* Slide effect */
+}
+
+/* Tooltips */
+.tooltip-2Qf8tc {
+	background: hsl(var(--accent-hue), 50%, 25%, 0.95) !important;
+	border: 1px solid hsl(var(--accent-hue), var(--accent-saturation), var(--accent-lightness)) !important;
+	color: var(--text-primary) !important;
+	border-radius: var(--app-radius);
+}
+
+/* Code blocks */
+.codeBlockText-2uHCrJ,
+.codeBlockLang-3u3x8k {
+	background: hsl(var(--accent-hue), 40%, 20%, 0.7) !important;
+	color: var(--text-primary) !important;
+	border-radius: var(--app-radius);
+}
+
+/* Reply messages */
+.replyBar-1YLQ0f {
+	border-left: 4px solid hsl(var(--reply-hue), var(--reply-saturation), var(--reply-lightness)) !important;
+	background: hsl(var(--reply-hue), 40%, 30%, 0.3) !important;
+}
+
+/* Selection */
+::selection {
+	background: hsl(var(--accent-hue), var(--accent-saturation), var(--accent-lightness)) !important;
+	color: var(--accent-text-color) !important;
+}
+
+/* Focus states - restrict to interactive controls (avoid outlining chat editor) */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+.menuItem-1P4QYV:focus-visible,
+.lookFilled-1Gx00P:focus-visible {
+	outline: 2px solid hsl(var(--accent-hue), var(--accent-saturation), var(--accent-lightness)) !important;
+	outline-offset: 2px;
+}
+
+/* Never outline the chat input container or its descendants */
+.channelTextArea-1VQBuV:focus,
+.channelTextArea-1VQBuV:focus-visible,
+.channelTextArea-1VQBuV:focus-within,
+[class*="channelTextArea-"]:focus,
+[class*="channelTextArea-"]:focus-visible,
+[class*="channelTextArea-"]:focus-within {
+	outline: none !important;
+}
+
+/* Remove intrusive outline lines on chat input/editor to avoid double vertical bars */
+.channelTextArea-1VQBuV textarea:focus,
+.channelTextArea-1VQBuV textarea:focus-visible,
+.slateTextArea-1Mkdgw textarea:focus,
+.slateTextArea-1Mkdgw textarea:focus-visible,
+.slateTextArea-1Mkdgw [contenteditable="true"]:focus,
+.slateTextArea-1Mkdgw [contenteditable="true"]:focus-visible {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+/* Kill any inner borders/box-shadows added by base theme on wrappers */
+.channelTextArea-1VQBuV [class^="scrollableContainer-"],
+.slateTextArea-1Mkdgw [class^="scrollableContainer-"],
+.channelTextArea-1VQBuV [class^="inner-"],
+.slateTextArea-1Mkdgw [class^="inner-"],
+.channelTextArea-1VQBuV [class*="scrollableContainer-"],
+.slateTextArea-1Mkdgw [class*="scrollableContainer-"] {
+	border: none !important;
+	box-shadow: none !important;
+}
+
+/* Remove possible rail pseudo-elements on wrappers as well */
+[class^="scrollableContainer-"]::before,
+[class^="scrollableContainer-"]::after,
+[class^="inner-"]::before,
+[class^="inner-"]::after {
+	display: none !important;
+	content: none !important;
+}
+
+/* Hide pseudo-element rails if used for focus indicator */
+.channelTextArea-1VQBuV::before,
+.channelTextArea-1VQBuV::after,
+.slateTextArea-1Mkdgw::before,
+.slateTextArea-1Mkdgw::after {
+	display: none !important;
+	content: none !important;
+}
+
+/* Notification badge */
+.numberBadge-37OJ3S {
+	background: hsl(var(--accent-hue), var(--accent-saturation), var(--accent-lightness)) !important;
+	color: var(--accent-text-color) !important;
+}
+
+/* Activity cards */
+.activityCard-3gzIgj {
+	background: hsl(var(--accent-hue), 40%, 25%, 0.6) !important;
+	backdrop-filter: blur(4px);
+	border-radius: var(--app-radius);
+}
+
+/* Quoted messages */
+.quoteContainer-2jngiH {
+	border-left: 4px solid hsl(var(--reply-hue), var(--reply-saturation), var(--reply-lightness)) !important;
+	background: hsl(var(--reply-hue), 40%, 30%, 0.2) !important;
+	border-radius: var(--app-radius);
+}
+
+/* Threads sidebar */
+.threadSidebar-2OLpxM {
+	background: var(--sidebar-color) !important;
+	backdrop-filter: blur(var(--app-blur));
+}
+
+/* Settings sidebar */
+.sidebarRegionScroller-FXiQOh {
+	background: transparent !important;
+}
+
+.sidebarRegionScroller-FXiQOh .item-3XjbnG {
+	color: var(--text-primary) !important;
+	will-change: transform, background-color;
+	transform: translateZ(0);
+	contain: layout style;
+}
+
+.sidebarRegionScroller-FXiQOh .item-3XjbnG:hover {
+	background: var(--background-modifier-hover) !important;
+	transform: translateX(4px) translateZ(0); /* Slide effect */
+}
+
+.sidebarRegionScroller-FXiQOh .item-3XjbnG.selected-g-iMVr {
+	background: var(--background-modifier-selected) !important;
+	color: var(--text-primary) !important;
+	transform: translateX(0) translateZ(0);
+}
+
+/* Text readability enhancements */
+.channelName-3KPsGw,
+.name-3Bvk7C,
+.username-1A8OIy {
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Minimal, targeted transitions */
+.wrapper-2jXpOf,
+.message-2qnXI6,
+.button-1RcPpB,
+.card-3Qj_Ye,
+.member-3-Y1UQ,
+.menuItem-1P4QYV,
+.reaction-2A2y9y {
+	transition: background-color var(--transition-speed) var(--transition-easing),
+	            color var(--transition-speed) var(--transition-easing),
+	            border-color var(--transition-speed) var(--transition-easing);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wrapper-2jXpOf,
+	.message-2qnXI6,
+	.button-1RcPpB,
+	.card-3Qj_Ye,
+	.member-3-Y1UQ,
+	.menuItem-1P4QYV,
+	.reaction-2A2y9y {
+		transition: none !important;
+	}
+}
+
+/* Neutralize heavy rendering hints from base for a cleaner stylesheet */
+.appMount-3lHmkl::before,
+.wrapper-2jXpOf,
+.message-2qnXI6,
+.button-1RcPpB,
+.card-3Qj_Ye,
+.member-3-Y1UQ,
+.menuItem-1P4QYV,
+.reaction-2A2y9y,
+.chat-2ZfjoI,
+.content-1jQy2l,
+.sidebar-2K8pFh,
+.base-2jD3DU,
+.panel-2ZFCRb,
+.wrapper-1Rf91z {
+	will-change: auto !important;
+	transform: none;
+	contain: initial;
+	backface-visibility: visible;
+}
+/*If you can read this, congrats! You can read this*/
